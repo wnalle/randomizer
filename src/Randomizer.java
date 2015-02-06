@@ -9,14 +9,14 @@
  * the state variable that needs to be maintained for use by those methods.
  **/
 public class Randomizer {
-  // Carefully chosen constants from the book "Numerical Recipes in C".
-  // All "static final" fields are constants.
-  static final int m = 233280;
-  static final int a = 9301;
-  static final int c = 49297;
+    // Carefully chosen constants from the book "Numerical Recipes in C".
+    // All "static final" fields are constants.
+    static final int m = 233280;  // the "modulus"
+    static final int a = 9301;    // the "multiplier"
+    static final int c = 49297;   // the "increment"
 
-  // The state variable maintained by each Randomizer instance
-  long seed = 1;
+    // The state variable maintained by each Randomizer instance
+    long seed = 1;
 
   /**
    * The constructor for the Randomizer() class.  It must be passed some
@@ -30,8 +30,7 @@ public class Randomizer {
    * better at computing randomness.
    **/
   public float randomFloat() {
-    seed = (seed * a + c) % m;
-    return (float)seed/(float)m;
+      seed = (seed * a + c) % m; return (float)seed/(float)m;
   }
 
   /**
@@ -39,7 +38,7 @@ public class Randomizer {
    * maximum.  It uses randomFloat() above.
    **/
   public int randomInt(int max) {
-    return Math.round(max * randomFloat());
+      return Math.round(max * randomFloat());
   }
 
   /**
@@ -47,9 +46,9 @@ public class Randomizer {
    * Note how the Randomizer object is seeded using the current time.
    **/
   public static class Test {
-    public static void main(String[] args) {
-      Randomizer r = new Randomizer(new java.util.Date().getTime());
-      for(int i = 0; i < 10; i++) System.out.println(r.randomInt(100));
-    }
+      public static void main(String[] args) {
+        Randomizer r = new Randomizer(new java.util.Date().getTime());
+        for(int i = 0; i < 10; i++) System.out.println(r.randomInt(100));
+      }
   }
 }
